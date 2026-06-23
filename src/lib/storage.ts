@@ -1,3 +1,5 @@
+"use client"
+
 // import { defaultAppData, defaultClaimRequests, SEED_VERSION } from "./seed";
 // import type { AppData } from "./types";
 // import { STORAGE_KEY } from "./types";
@@ -145,7 +147,8 @@ import {
 } from "./warranty-master";
 import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
-
+// import { useMutation } from "@tanstack/react-query";
+// immport useMutation
 
 export const saleOrders = async () => {
   try {
@@ -315,7 +318,7 @@ export function saveAppData(data: AppData): void {
   if (typeof window === "undefined") return;
   saveWarrantyMasterTable(data.serials);
   saveWarrantyDispatchTable(data.warrantyDispatches);
-  saveWarrantyClaimTable(data?.claims);
+  saveWarrantyClaimTable(data?.claims as any );
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 }
 
@@ -326,3 +329,7 @@ export function resetAppData(): AppData {
 export function generateId(): string {
   return `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
 }
+function postSerialItem(arg0: any) {
+  throw new Error("Function not implemented.");
+}
+

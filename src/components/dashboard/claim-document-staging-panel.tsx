@@ -10,7 +10,7 @@ export function ClaimDocumentStagingPanel() {
   const [claimId, setClaimId] = useState("");
 
   const claim = useMemo(
-    () => data?.claims.find((c) => c.claimId === claimId.trim()),
+    () => data?.claims.find((c:any) => c.claimId === claimId.trim()),
     [data, claimId],
   );
 
@@ -34,7 +34,7 @@ export function ClaimDocumentStagingPanel() {
             {(claim.stagingLog ?? []).length === 0 ? (
               <li className="text-slate-400">No staging entries on this claim yet.</li>
             ) : (
-              claim.stagingLog!.map((entry, i) => (
+              claim.stagingLog!.map((entry:any, i:any) => (
                 <li key={i} className="rounded border border-slate-100 bg-slate-50 p-2">
                   <span className="font-semibold text-slate-800">{entry.step}</span>
                   <span className="text-slate-400"> · {entry.performedAt.slice(0, 16)}</span>

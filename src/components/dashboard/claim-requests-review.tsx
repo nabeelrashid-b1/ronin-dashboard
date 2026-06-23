@@ -146,7 +146,7 @@ export function ClaimRequestsReview() {
     setMessage(null);
     setError(null);
 
-    const serial = data.serials.find((s) => s.serialNumber === req.serialNumber);
+    const serial = data.serials.find((s:any) => s.serialNumber === req.serialNumber);
     if (req.postedClaimId) {
       setError(`Already posted as ${req.postedClaimId}`);
       return;

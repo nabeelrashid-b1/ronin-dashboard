@@ -27,7 +27,7 @@ export function AuditLogsTable() {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
-              {data.auditLogs.map((log) => (
+              {data.auditLogs.map((log:any) => (
                 <tr key={log.id} className="hover:bg-slate-50/50">
                   <td className="px-6 py-3 whitespace-nowrap text-slate-500">
                     {new Date(log.performedAt).toLocaleString()}
