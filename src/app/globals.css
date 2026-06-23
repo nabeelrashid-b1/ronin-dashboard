@@ -1,0 +1,274 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f1f5f9;
+  --foreground: #0f172a;
+  --warranty-sticker-blue: #25408f;
+  --warranty-sticker-bg: #e9eaed;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+/* Ronin 17×20 mm warranty QR sticker — official sample (centered, blue on grey) */
+.warranty-qr-label {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 17mm;
+  height: 20mm;
+  padding: 0.45mm 0.35mm 0.35mm;
+  overflow: hidden;
+  background: var(--warranty-sticker-bg);
+  color: var(--warranty-sticker-blue);
+  font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+  text-align: center;
+  break-inside: avoid;
+  page-break-inside: avoid;
+  border: none;
+}
+
+.warranty-qr-label__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.warranty-qr-label__header-line {
+  display: block;
+  width: 100%;
+  white-space: nowrap;
+  font-size: 0.92mm;
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.warranty-qr-label__qr-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin: 0.2mm 0;
+  line-height: 0;
+}
+
+.warranty-qr-label__qr {
+  display: block;
+  object-fit: contain;
+}
+
+.warranty-qr-label__qr--placeholder {
+  background: color-mix(in srgb, var(--warranty-sticker-blue) 12%, var(--warranty-sticker-bg));
+}
+
+/* Serial above item line — sample order */
+.warranty-qr-label__serial {
+  margin: 0.12mm 0 0;
+  width: 100%;
+  max-width: 16.2mm;
+  padding: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 1.02mm;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+/* Item description — slightly larger than serial (sample) */
+.warranty-qr-label__item-desc {
+  margin: 0.08mm 0 0;
+  width: 100%;
+  max-width: 16.2mm;
+  padding: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 1.18mm;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+/* Enlarged preview in View QR dialog — screen only (never scaled when printing) */
+@media screen {
+  .warranty-qr-label-preview-host {
+    width: calc(17mm * 4.25);
+    height: calc(20mm * 4.25);
+    overflow: visible;
+  }
+
+  .warranty-qr-label-preview-host .warranty-qr-label {
+    transform: scale(4.25);
+    transform-origin: top left;
+    box-shadow: 0 1px 4px rgb(15 23 42 / 12%);
+  }
+
+  /* View QR modal — enlarged Ronin sticker only */
+  .warranty-qr-label-preview-host--modal {
+    width: calc(17mm * 7.5);
+    height: calc(20mm * 7.5);
+    min-height: calc(20mm * 7.5);
+  }
+
+  .warranty-qr-label-preview-host--modal .warranty-qr-label {
+    transform: scale(7.5);
+    transform-origin: top left;
+    box-shadow: 0 2px 12px rgb(37 64 143 / 18%);
+  }
+}
+
+/* Print report: exactly 5 × (17 mm × 20 mm) + 2 mm gaps → 93 mm grid width */
+.warranty-label-sheet-preview {
+  display: grid;
+  grid-template-columns: repeat(5, 17mm);
+  grid-auto-rows: 20mm;
+  gap: 2mm;
+  align-content: start;
+  width: calc(5 * 17mm + 4 * 2mm);
+  max-width: calc(5 * 17mm + 4 * 2mm);
+}
+
+.warranty-label-sheet-preview .warranty-qr-label {
+  width: 17mm;
+  height: 20mm;
+  min-width: 17mm;
+  min-height: 20mm;
+  max-width: 17mm;
+  max-height: 20mm;
+  box-sizing: border-box;
+}
+
+/* One A4 sheet of stickers — paginated in print and on screen */
+.warranty-print-page {
+  break-after: page;
+  page-break-after: always;
+  width: fit-content;
+}
+
+.warranty-print-page:last-child {
+  break-after: auto;
+  page-break-after: auto;
+}
+
+@media screen {
+  .warranty-print-page {
+    margin-inline: auto;
+    margin-bottom: 1.5rem;
+    padding: 10mm;
+    min-height: calc(297mm - 20mm);
+    background: #fff;
+    border: 1px solid rgb(226 232 240);
+    box-shadow: 0 1px 4px rgb(15 23 42 / 10%);
+  }
+
+  .warranty-print-page:last-child {
+    margin-bottom: 0;
+  }
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 10mm;
+  }
+
+  body {
+    background: #fff !important;
+  }
+
+  .print-sheet {
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  #warranty-label-print-area {
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+  }
+
+  .warranty-print-labels-page > *:not(#warranty-label-print-area) {
+    display: none !important;
+  }
+
+  .warranty-print-page {
+    break-after: page;
+    page-break-after: always;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    min-height: 0 !important;
+  }
+
+  .warranty-print-page:last-child {
+    break-after: auto;
+    page-break-after: auto;
+  }
+
+  .warranty-label-sheet-preview {
+    display: grid !important;
+    grid-template-columns: repeat(5, 17mm) !important;
+    grid-auto-rows: 20mm !important;
+    gap: 2mm !important;
+    width: calc(5 * 17mm + 4 * 2mm) !important;
+    max-width: calc(5 * 17mm + 4 * 2mm) !important;
+    transform: none !important;
+  }
+
+  .warranty-label-sheet-preview .warranty-qr-label {
+    width: 17mm !important;
+    height: 20mm !important;
+    min-width: 17mm !important;
+    min-height: 20mm !important;
+    max-width: 17mm !important;
+    max-height: 20mm !important;
+    transform: none !important;
+    box-sizing: border-box !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .warranty-qr-label {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .warranty-qr-label-preview-host,
+  .warranty-qr-label-preview-host--modal {
+    width: auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
+  .warranty-qr-label-preview-host .warranty-qr-label,
+  .warranty-qr-label-preview-host--modal .warranty-qr-label {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+}
