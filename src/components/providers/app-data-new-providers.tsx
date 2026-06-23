@@ -164,7 +164,6 @@
 // };
 
 
-"use client";
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
