@@ -90,13 +90,17 @@ export function CounterClaimPanel() {
       return;
     }
 
-    const posted = next?.claims[next?.claims?.length - 1] ;
+    // const posted = next?.claims[next?.claims?.length - 1] ;
+    const posted =
+  next?.claims?.length
+    ? next.claims[next.claims.length - 1]
+    : undefined;
     saveAppData(next);
     updateData(() => next);
     setOldScan("");
     setNewScan("");
     setSuccess(
-      `Counter claim ${posted.claimId} posted (${INTERNAL_CLAIM_CATEGORY.counterClaim.label}). ` +
+      `Counter claim ${posted?.claimId} posted (${INTERNAL_CLAIM_CATEGORY.counterClaim.label}). ` +
         `Old ${oldCtx.serial.serialNumber} → available · New ${newCtx.serial.serialNumber} → dispatched.`,
     );
   }
