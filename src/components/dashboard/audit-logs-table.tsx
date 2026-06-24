@@ -3,6 +3,7 @@
 import { useAppDataContext } from "@/components/providers/app-data-provider";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal } from "react";
 
 export function AuditLogsTable() {
   const { data, isReady } = useAppDataContext();
@@ -27,7 +28,7 @@ export function AuditLogsTable() {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
-              {data.auditLogs.map((log:any) => (
+              {data.auditLogs.map((log: { id: Key | null | undefined; performedAt: string | number | Date; module: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined; action: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined; details: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined; performedBy: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined; }) => (
                 <tr key={log.id} className="hover:bg-slate-50/50">
                   <td className="px-6 py-3 whitespace-nowrap text-slate-500">
                     {new Date(log.performedAt).toLocaleString()}

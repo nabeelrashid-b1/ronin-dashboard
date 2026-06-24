@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useMemo, useState } from "react";
 import { useAppDataContext } from "@/components/providers/app-data-provider";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { FIELDS } from "@/config/fields";
@@ -34,7 +34,7 @@ export function ClaimDocumentStagingPanel() {
             {(claim.stagingLog ?? []).length === 0 ? (
               <li className="text-slate-400">No staging entries on this claim yet.</li>
             ) : (
-              claim.stagingLog!.map((entry:any, i:any) => (
+              claim.stagingLog!.map((entry: { step: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined; performedAt: string | any[]; creditNote: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined; newSerialNumber: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined; notes: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined; }, i: Key | null | undefined) => (
                 <li key={i} className="rounded border border-slate-100 bg-slate-50 p-2">
                   <span className="font-semibold text-slate-800">{entry.step}</span>
                   <span className="text-slate-400"> · {entry.performedAt.slice(0, 16)}</span>
