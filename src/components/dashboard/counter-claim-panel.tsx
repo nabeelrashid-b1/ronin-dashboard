@@ -85,12 +85,12 @@ export function CounterClaimPanel() {
       dispatchSo,
     );
 
-    if (next.claims.length === data.claims.length) {
+    if (next?.claims?.length === data?.claims?.length) {
       setError("Failed to post counter claim.");
       return;
     }
 
-    const posted = next.claims[next.claims.length - 1];
+    const posted = next?.claims[next?.claims?.length - 1] ;
     saveAppData(next);
     updateData(() => next);
     setOldScan("");
