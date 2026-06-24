@@ -47,7 +47,7 @@ export function ClaimStatusUpdatePanel() {
   const openClaims = useMemo(
     () =>
       data?.claims.filter(
-        (c) => c.warrantySubType === "repair" && isClaimOpen(c),
+        (c: WarrantyClaimRecord) => c.warrantySubType === "repair" && isClaimOpen(c),
       ) ?? [],
     [data],
   );
@@ -162,7 +162,7 @@ export function ClaimStatusUpdatePanel() {
         {openClaims.length === 0 ? (
           <p className="text-sm text-slate-400">No open repair claims.</p>
         ) : (
-          openClaims.map((claim) => {
+          openClaims.map((claim: WarrantyClaimRecord) => {
             const step = getRepairWorkflowStep(claim);
             const chain = getReplacementChain(data.serials, claim.serialNumber);
 

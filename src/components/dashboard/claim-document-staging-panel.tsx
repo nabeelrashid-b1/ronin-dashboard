@@ -10,7 +10,7 @@ export function ClaimDocumentStagingPanel() {
   const [claimId, setClaimId] = useState("");
 
   const claim = useMemo(
-    () => data?.claims.find((c:any) => c.claimId === claimId.trim()),
+    () => data?.claims.find((c: { claimId: string; }) => c.claimId === claimId.trim()),
     [data, claimId],
   );
 
