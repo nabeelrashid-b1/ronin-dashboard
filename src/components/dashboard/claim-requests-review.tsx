@@ -379,11 +379,11 @@ export function ClaimRequestsReview() {
   ];
 
   const postedClaim = selected?.postedClaimId
-    ? data?.claims.find((c) => c.claimId === selected.postedClaimId)
+    ? data?.claims.find((c: { claimId: string | undefined; }) => c.claimId === selected.postedClaimId)
     : undefined;
   const showRepairActions = postedClaim?.warrantySubType === "repair";
   const serialForSelected = selected
-    ? data?.serials.find((s) => s.serialNumber === selected.serialNumber)
+    ? data?.serials.find((s: { serialNumber: string; }) => s.serialNumber === selected.serialNumber)
     : undefined;
   const sevenDayOk =
     selected && serialForSelected
