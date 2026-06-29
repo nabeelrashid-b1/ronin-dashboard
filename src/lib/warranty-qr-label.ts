@@ -58,7 +58,7 @@ export function buildWarrantyCheckQrUrl(
   baseUrl?: string,
 ): string {
   const base = (baseUrl ?? getWarrantyCheckBaseUrl()).replace(/\/$/, "").replace(/\?.*$/, "");
-  return `${base}?sn=${encodeURIComponent(serialNumber.trim())}`;
+  return `${base}?sn=${encodeURIComponent(serialNumber?.trim())}`;
 }
 
 /** @deprecated use buildWarrantyCheckQrUrl */

@@ -3,6 +3,8 @@
  */
 export const FIELDS = {
   serialNumber: { key: "serialNumber", label: "Serial Number" },
+  serialNo: { key: "serialNo", label: "Serial Number" },
+ 
   qrCode: { key: "qrCode", label: "QR Code / Warranty Sticker ID" },
   itemCode: { key: "itemCode", label: "Item Code" },
   itemName: { key: "itemName", label: "Item Name" },
@@ -27,6 +29,7 @@ export const FIELDS = {
   warrantyStartDate: { key: "warrantyStartDate", label: "Warranty Start Date" },
   warrantyEndDate: { key: "warrantyEndDate", label: "Warranty End Date" },
   warrantyPeriod: { key: "warrantyPeriod", label: "Warranty period (months)" },
+  wStartDate:{key :"wStartDate", label:"Warranty Start Date"},
   claimId: { key: "claimId", label: "Claim ID" },
   claimCategory: { key: "claimCategory", label: "Claim Category" },
   claimType: { key: "claimType", label: "Claim Type" },

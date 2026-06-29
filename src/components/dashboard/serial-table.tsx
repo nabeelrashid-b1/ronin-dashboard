@@ -198,14 +198,16 @@ export function SerialTable({ limit }: { limit?: number }) {
     );
     return limit ? list.slice(0, limit) : list;
   }, [data, limit]);
-
+console.log('rowa',data?.serials)
 
 
 
   if (!isReady || !data) return null;
 
   const columns: DataTableColumn<WarrantySerial>[] = [
-    { id: "serial", header: FIELDS.serialNumber.label, accessor: (r) => r.serialNumber, className: "font-mono text-xs" },
+    // { id: "serial", header: FIELDS.serialNumber.label, accessor: (r) => r.serialNumber, className: "font-mono text-xs" },
+    { id: "serial", header: FIELDS.serialNumber.label, accessor: (r) => r.serialNo, className: "font-mono text-xs" },
+  
     {
       id: "qr",
       header: FIELDS.qrCode.label,
@@ -259,16 +261,26 @@ export function SerialTable({ limit }: { limit?: number }) {
   accessor: (r) => r.claimStatus,
   cell: (r) => <StatusBadge status={r.claimStatus} />,
 },
-    {
+  {
       id: "warrantyStart",
       header: FIELDS.warrantyStartDate.label,
-      accessor: (r) => r.warrantyStartDate || "—",
+      accessor: (r) => r.wStartDate || "—",
     },
+    // {
+    //   id: "warrantyStart",
+    //   header: FIELDS.warrantyStartDate.label,
+    //   accessor: (r) => r.warrantyStartDate || "—",
+    // },
     {
       id: "warrantyEnd",
       header: FIELDS.warrantyEndDate.label,
       accessor: (r) => r.warrantyEndDate || "—",
     },
+    //  {
+    //   id: "warrantyEnd",
+    //   header: FIELDS.warrantyEndDate.label,
+    //   accessor: (r) => r.wEndDate || "—",
+    // },
   ];
 
   console.log("Rendering SerialTable with rows:", rows);

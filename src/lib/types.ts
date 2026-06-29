@@ -44,16 +44,20 @@ export interface WarrantySerial {
   id: string;
   serialNumber: string;
   itemCode: string;
+  serialNo:any,
   itemName: string;
   batchNumber: string;
   printDate: string;
   color: string;
   warrantyPeriod: WarrantyPeriodMonths;
   qrCode: string;
+
   qrCodeDataUrl?: string;
   status: SerialStatus;
   claimCount: number;
   claimStatus?:any,
+  wStartDate? : any,
+      wEndDate?:any
   claimHistory: ClaimJourneyEntry[];
   warrantyStartDate: string;
   warrantyEndDate: string;
